@@ -1,221 +1,612 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuntoCash</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuntoCash</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #f4f6f8;
-      color: #17202a;
-    }
+body{
+  background:#eef2f5;
+  color:#17202a;
+}
 
-    .app {
-      max-width: 480px;
-      min-height: 100vh;
-      margin: auto;
-      background: white;
-    }
+.app{
+  max-width:480px;
+  min-height:100vh;
+  margin:auto;
+  background:#fff;
+}
 
-    header {
-      background: #087f5b;
-      color: white;
-      padding: 28px 20px;
-      border-radius: 0 0 25px 25px;
-    }
+header{
+  background:#087f5b;
+  color:white;
+  padding:25px 20px;
+  border-radius:0 0 25px 25px;
+}
 
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
+.logo{
+  font-size:28px;
+  font-weight:bold;
+}
 
-    .saludo {
-      font-size: 15px;
-      opacity: .9;
-    }
+.subtitle{
+  margin-top:6px;
+  opacity:.9;
+}
 
-    .saldo {
-      font-size: 34px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
+.container{
+  padding:20px;
+}
 
-    .contenido {
-      padding: 20px;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
 
-    .botones {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
+.balance{
+  background:#087f5b;
+  color:white;
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:18px;
+}
 
-    button {
-      border: none;
-      border-radius: 14px;
-      padding: 16px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.balance small{
+  opacity:.9;
+}
 
-    .btn-cargar {
-      background: #087f5b;
-      color: white;
-    }
+.balance h2{
+  font-size:34px;
+  margin-top:8px;
+}
 
-    .btn-retirar {
-      background: #e9ecef;
-      color: #17202a;
-    }
+input,select{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+}
 
-    .titulo {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:#087f5b;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  margin-top:8px;
+  cursor:pointer;
+}
 
-    .movimiento {
-      display: flex;
-      justify-content: space-between;
-      padding: 16px 0;
-      border-bottom: 1px solid #e9ecef;
-    }
+button.secondary{
+  background:#e9ecef;
+  color:#17202a;
+}
 
-    .positivo {
-      color: #087f5b;
-      font-weight: bold;
-    }
+button.danger{
+  background:#d63031;
+}
 
-    .negativo {
-      color: #d9480f;
-      font-weight: bold;
-    }
+button.admin{
+  background:#6c5ce7;
+}
 
-    .menu {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
-      background: white;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 5px;
-    }
+.hidden{
+  display:none!important;
+}
 
-    .menu div {
-      text-align: center;
-      font-size: 12px;
-      color: #555;
-    }
+h2{
+  margin-bottom:12px;
+}
 
-    .icono {
-      font-size: 23px;
-      display: block;
-      margin-bottom: 4px;
-    }
+h3{
+  margin-bottom:8px;
+}
 
-    .mensaje {
-      display: none;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #17202a;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 12px;
-      z-index: 10;
-    }
-  </style>
+p{
+  line-height:1.5;
+}
+
+.error{
+  color:#d63031;
+  margin-top:10px;
+}
+
+.success{
+  color:#087f5b;
+  margin-top:10px;
+}
+
+.nav{
+  position:sticky;
+  bottom:0;
+  background:white;
+  display:flex;
+  border-top:1px solid #ddd;
+  padding:8px;
+}
+
+.nav button{
+  margin:3px;
+  padding:11px 5px;
+  font-size:12px;
+  background:white;
+  color:#555;
+}
+
+.nav button.active{
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.movement{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.movement:last-child{
+  border-bottom:0;
+}
+
+.plus{
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.minus{
+  color:#d63031;
+  font-weight:bold;
+}
+
+.user-row{
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#e9f7f1;
+  color:#087f5b;
+  font-size:12px;
+}
+
+.login-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+}
+
+.logo-login{
+  text-align:center;
+  color:#087f5b;
+  font-size:38px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.center{
+  text-align:center;
+}
+
+.link{
+  color:#087f5b;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.admin-title{
+  color:#6c5ce7;
+}
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- LOGIN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
 
-  <header>
-    <div class="logo">💰 PuntoCash</div>
-    <div class="saludo">Hola 👋</div>
-    <div class="saldo">$0,00</div>
-  </header>
+    <div class="logo-login">PuntoCash</div>
 
-  <main class="contenido">
+    <div class="card">
 
-    <div class="botones">
-      <button class="btn-cargar" onclick="mostrarMensaje('Función de cargar dinero')">
-        + Cargar dinero
-      </button>
+      <div id="loginForm">
 
-      <button class="btn-retirar" onclick="mostrarMensaje('Función de retirar dinero')">
-        ↑ Retirar
-      </button>
+        <h2>Iniciar sesión</h2>
+        <p>Ingresá a tu cuenta de PuntoCash.</p>
+
+        <input id="loginEmail" type="email" placeholder="Correo electrónico">
+
+        <input id="loginPassword" type="password" placeholder="Contraseña">
+
+        <button onclick="login()">Ingresar</button>
+
+        <p id="loginError" class="error"></p>
+
+        <p class="center link" onclick="showRegister()">
+          Crear una cuenta
+        </p>
+
+      </div>
+
+      <div id="registerForm" class="hidden">
+
+        <h2>Crear cuenta</h2>
+
+        <input id="registerName" placeholder="Nombre completo">
+
+        <input id="registerEmail" type="email" placeholder="Correo electrónico">
+
+        <input id="registerPassword" type="password" placeholder="Contraseña">
+
+        <button onclick="register()">Registrarme</button>
+
+        <p id="registerMessage"></p>
+
+        <p class="center link" onclick="showLogin()">
+          Ya tengo una cuenta
+        </p>
+
+      </div>
+
     </div>
 
-    <div class="titulo">Últimos movimientos</div>
+    <p class="center">
+      © 2026 PuntoCash
+    </p>
 
-    <div class="movimiento">
-      <span>Cuenta creada</span>
-      <span class="positivo">$0,00</span>
-    </div>
-
-    <div class="movimiento">
-      <span>Saldo disponible</span>
-      <span>$0,00</span>
-    </div>
-
-  </main>
-
-  <div class="menu">
-    <div>
-      <span class="icono">🏠</span>
-      Inicio
-    </div>
-
-    <div>
-      <span class="icono">💳</span>
-      Movimientos
-    </div>
-
-    <div>
-      <span class="icono">👤</span>
-      Perfil
-    </div>
-
-    <div>
-      <span class="icono">⚙️</span>
-      Configuración
-    </div>
   </div>
+</div>
+
+
+<!-- APP -->
+<div id="app" class="app hidden">
+
+<header>
+  <div class="logo">PuntoCash</div>
+  <div class="subtitle">
+    Tu billetera digital
+  </div>
+</header>
+
+
+<div class="container">
+
+  <!-- INICIO -->
+  <section id="homePage">
+
+    <div class="balance">
+      <small>Saldo disponible</small>
+      <h2 id="balance">$0,00</h2>
+      <p id="welcome"></p>
+    </div>
+
+    <div class="card">
+
+      <h3>¿Qué querés hacer?</h3>
+
+      <button onclick="showPage('depositPage')">
+        ➕ Depositar
+      </button>
+
+      <button onclick="showPage('withdrawPage')">
+        ➖ Retirar
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Últimos movimientos</h3>
+
+      <div id="homeMovements">
+        No hay movimientos todavía.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DEPOSITAR -->
+  <section id="depositPage" class="hidden">
+
+    <div class="card">
+
+      <h2>Depositar dinero</h2>
+
+      <p>
+        Ingresá el monto que querés depositar.
+      </p>
+
+      <input
+        id="depositAmount"
+        type="number"
+        placeholder="Monto"
+        min="1"
+      >
+
+      <button onclick="deposit()">
+        Confirmar depósito
+      </button>
+
+      <button class="secondary" onclick="showPage('homePage')">
+        Volver
+      </button>
+
+      <p id="depositMessage"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- RETIRAR -->
+  <section id="withdrawPage" class="hidden">
+
+    <div class="card">
+
+      <h2>Retirar dinero</h2>
+
+      <p>
+        Ingresá el monto que querés retirar.
+      </p>
+
+      <input
+        id="withdrawAmount"
+        type="number"
+        placeholder="Monto"
+        min="1"
+      >
+
+      <button onclick="withdraw()">
+        Confirmar retiro
+      </button>
+
+      <button class="secondary" onclick="showPage('homePage')">
+        Volver
+      </button>
+
+      <p id="withdrawMessage"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- MOVIMIENTOS -->
+  <section id="movementsPage" class="hidden">
+
+    <div class="card">
+
+      <h2>Movimientos</h2>
+
+      <div id="movements">
+        No hay movimientos.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERFIL -->
+  <section id="profilePage" class="hidden">
+
+    <div class="card">
+
+      <h2>Mi perfil</h2>
+
+      <p><b>Nombre:</b></p>
+      <p id="profileName"></p>
+
+      <br>
+
+      <p><b>Correo:</b></p>
+      <p id="profileEmail"></p>
+
+      <br>
+
+      <button class="danger" onclick="logout()">
+        Cerrar sesión
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ADMIN -->
+  <section id="adminPage" class="hidden">
+
+    <div class="card">
+
+      <h2 class="admin-title">
+        ⚙️ Panel de administrador
+      </h2>
+
+      <div class="stat">
+        <span>Usuarios</span>
+        <b id="totalUsers">0</b>
+      </div>
+
+      <div class="stat">
+        <span>Saldo total</span>
+        <b id="totalBalance">$0,00</b>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Usuarios registrados</h3>
+
+      <div id="usersList"></div>
+
+    </div>
+
+  </section>
 
 </div>
 
-<div id="mensaje" class="mensaje"></div>
+
+<!-- NAVEGACIÓN -->
+
+<div class="nav">
+
+  <button onclick="showPage('homePage')">
+    🏠<br>Inicio
+  </button>
+
+  <button onclick="showPage('movementsPage')">
+    📋<br>Movimientos
+  </button>
+
+  <button onclick="showPage('profilePage')">
+    👤<br>Perfil
+  </button>
+
+  <button id="adminButton"
+          class="hidden"
+          onclick="showPage('adminPage')">
+    ⚙️<br>Admin
+  </button>
+
+</div>
+
+</div>
+
 
 <script>
-  function mostrarMensaje(texto) {
-    const mensaje = document.getElementById("mensaje");
-    mensaje.textContent = texto;
-    mensaje.style.display = "block";
 
-    setTimeout(function() {
-      mensaje.style.display = "none";
-    }, 2000);
+const ADMIN_EMAIL = "admin@puntocash.com";
+const ADMIN_PASSWORD = "admin123";
+
+let users = JSON.parse(
+  localStorage.getItem("puntocash_users") || "[]"
+);
+
+let currentUserEmail =
+  localStorage.getItem("puntocash_currentUser");
+
+
+function saveUsers(){
+
+  localStorage.setItem(
+    "puntocash_users",
+    JSON.stringify(users)
+  );
+
+}
+
+
+function money(value){
+
+  return new Intl.NumberFormat("es-AR",{
+    style:"currency",
+    currency:"ARS"
+  }).format(value);
+
+}
+
+
+function showLogin(){
+
+  document.getElementById("loginForm")
+    .classList.remove("hidden");
+
+  document.getElementById("registerForm")
+    .classList.add("hidden");
+
+}
+
+
+function showRegister(){
+
+  document.getElementById("loginForm")
+    .classList.add("hidden");
+
+  document.getElementById("registerForm")
+    .classList.remove("hidden");
+
+}
+
+
+function register(){
+
+  const name =
+    document.getElementById("registerName").value.trim();
+
+  const email =
+    document.getElementById("registerEmail").value.trim().toLowerCase();
+
+  const password =
+    document.getElementById("registerPassword").value;
+
+  const message =
+    document.getElementById("registerMessage");
+
+
+  if(!name || !email || !password){
+
+    message.className="error";
+    message.textContent="Completá todos los campos.";
+    return;
+
   }
-</script>
 
-</body>
-</html>
+
+  if(password.length < 4){
+
+    message.className="error";
+    message.textContent="La contraseña debe tener al menos 4 caracteres.";
+    return;
+
+  }
+
+
+  if(users.some(u => u.email === email)){
+
+    message.className="error";
+    message.textContent="Ese correo ya está registrado.";
+    return;
+
+  }
+
+
+  users.push({
+
+    name
