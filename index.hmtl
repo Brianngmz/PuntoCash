@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PuntoCash</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #17202a;
+    }
+
+    .app {
+      max-width: 480px;
+      min-height: 100vh;
+      margin: auto;
+      background: white;
+    }
+
+    header {
+      background: #087f5b;
+      color: white;
+      padding: 28px 20px;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .saludo {
+      font-size: 15px;
+      opacity: .9;
+    }
+
+    .saldo {
+      font-size: 34px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .contenido {
+      padding: 20px;
+    }
+
+    .botones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-cargar {
+      background: #087f5b;
+      color: white;
+    }
+
+    .btn-retirar {
+      background: #e9ecef;
+      color: #17202a;
+    }
+
+    .titulo {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .movimiento {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .positivo {
+      color: #087f5b;
+      font-weight: bold;
+    }
+
+    .negativo {
+      color: #d9480f;
+      font-weight: bold;
+    }
+
+    .menu {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 5px;
+    }
+
+    .menu div {
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .icono {
+      font-size: 23px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .mensaje {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #17202a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <div class="logo">💰 PuntoCash</div>
+    <div class="saludo">Hola 👋</div>
+    <div class="saldo">$0,00</div>
+  </header>
+
+  <main class="contenido">
+
+    <div class="botones">
+      <button class="btn-cargar" onclick="mostrarMensaje('Función de cargar dinero')">
+        + Cargar dinero
+      </button>
+
+      <button class="btn-retirar" onclick="mostrarMensaje('Función de retirar dinero')">
+        ↑ Retirar
+      </button>
+    </div>
+
+    <div class="titulo">Últimos movimientos</div>
+
+    <div class="movimiento">
+      <span>Cuenta creada</span>
+      <span class="positivo">$0,00</span>
+    </div>
+
+    <div class="movimiento">
+      <span>Saldo disponible</span>
+      <span>$0,00</span>
+    </div>
+
+  </main>
+
+  <div class="menu">
+    <div>
+      <span class="icono">🏠</span>
+      Inicio
+    </div>
+
+    <div>
+      <span class="icono">💳</span>
+      Movimientos
+    </div>
+
+    <div>
+      <span class="icono">👤</span>
+      Perfil
+    </div>
+
+    <div>
+      <span class="icono">⚙️</span>
+      Configuración
+    </div>
+  </div>
+
+</div>
+
+<div id="mensaje" class="mensaje"></div>
+
+<script>
+  function mostrarMensaje(texto) {
+    const mensaje = document.getElementById("mensaje");
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+
+    setTimeout(function() {
+      mensaje.style.display = "none";
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
